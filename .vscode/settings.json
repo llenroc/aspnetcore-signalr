@@ -4,6 +4,15 @@
         "**/.git": true,
         "**/.DS_Store": true,
         "**/app/**/*.js": true,
-        "**/*.map": true
+        "**/*.map": true,
+        "obj": true,
+        "Properties": true,
+        "node_modules": true,
+        "bower_components": true,
+        ".bowerrc": true,
+        ".gitignore": true,
+        "bower.json": true,
+        "licence": true,
+        "project.lock.json": true
     }
 }

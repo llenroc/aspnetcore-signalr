@@ -1,6 +1,5 @@
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 
 namespace LiveGameFeed
@@ -10,13 +9,16 @@ namespace LiveGameFeed
         public static void Main(string[] args)
         {
             var config = new ConfigurationBuilder()
-                .AddCommandLine(args)
-                .AddEnvironmentVariables(prefix: "ASPNETCORE_")
-                .Build();
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("hosting.json", optional: true)
+                        .Build();
+
 
             var host = new WebHostBuilder()
-                .UseConfiguration(config)
+                .CaptureStartupErrors(true)
+                // .UseSetting("detailedErrors", "true")
                 .UseKestrel()
+                .UseConfiguration(config)
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
